@@ -1,0 +1,13 @@
+name: BydloBridge
+version: 1.0.0
+main: land.bydlo.bridge.BydloBridgePlugin
+api-version: "1.21"
+folia-supported: false
+commands:
+  link:
+    description: Привязка Minecraft-аккаунта к Telegram
+    usage: /link <code>
+    permission: bydloland.link
+permissions:
+  bydloland.link:
+    default: true

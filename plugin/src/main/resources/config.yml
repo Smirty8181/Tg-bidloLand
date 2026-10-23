@@ -1,0 +1,4 @@
+http-port: 8765
+api-key: "syiq10PIcmqJdu6OzP5DPOUHn1YI_M2kj41D3NAVWbw"
+backend-url: "https://java-suzuki-advocate-unwrap.trycloudflare.com"
+bind-address: "0.0.0.0"

@@ -1,0 +1,38 @@
+from bot.keyboards.callbacks import AdminCB, ConfirmCB, IdeaCB, MenuCB, PunishCB, ReportCB
+from bot.keyboards.menus import (
+    admin_menu,
+    admin_server_menu,
+    build_menu,
+    confirm_menu,
+    duration_menu,
+    idea_categories,
+    main_menu,
+    map_menu,
+    profile_menu,
+    punish_types,
+    refresh_menu,
+    report_categories,
+    skip_attach_menu,
+)
+
+__all__ = [
+    "AdminCB",
+    "ConfirmCB",
+    "IdeaCB",
+    "MenuCB",
+    "PunishCB",
+    "ReportCB",
+    "admin_menu",
+    "admin_server_menu",
+    "build_menu",
+    "confirm_menu",
+    "duration_menu",
+    "idea_categories",
+    "main_menu",
+    "map_menu",
+    "profile_menu",
+    "punish_types",
+    "refresh_menu",
+    "report_categories",
+    "skip_attach_menu",
+]

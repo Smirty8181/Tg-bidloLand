@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+!.env.example
+__pycache__
+.venv
+miniapp/node_modules
+miniapp/dist
+plugin/.gradle
+plugin/build
+logs
+data
+deploy
+*.md
+tests
