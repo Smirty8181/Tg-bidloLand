@@ -1,5 +1,7 @@
 # БыдлоЛенд — Telegram Bot + Mini App
 
+[![Последний релиз](https://img.shields.io/github/v/release/Smirty8181/Tg-bidloLand?label=%D1%80%D0%B5%D0%BB%D0%B8%D0%B7&color=2ea44f)](https://github.com/Smirty8181/Tg-bidloLand/releases/latest)
+
 Официальная экосистема Minecraft-сервера **БыдлоЛенд**: Telegram-бот, Telegram Mini App (Vue 3), FastAPI backend, PostgreSQL и Paper-плагин для интеграции с сервером.
 
 ```
