@@ -360,7 +360,7 @@ python -m pytest -v
 ### `BOT_TOKEN is not set`
 Заполните `BOT_TOKEN` в `.env`.
 
-### `🔴 Не удалось связаться с Minecraft-сервером`
+### `Не удалось связаться с Minecraft-сервером`
 - Проверьте RCON (`RCON_HOST`, `RCON_PORT`, `RCON_PASSWORD`)
 - Убедитесь, что Paper-плагин запущен (`PLUGIN_API_URL`)
 - Проверьте firewall
