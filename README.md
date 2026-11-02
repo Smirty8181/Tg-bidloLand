@@ -1,6 +1,7 @@
 # БыдлоЛенд — Telegram Bot + Mini App
 
 [![Последний релиз](https://img.shields.io/github/v/release/Smirty8181/Tg-bidloLand?label=%D1%80%D0%B5%D0%BB%D0%B8%D0%B7&color=2ea44f)](https://github.com/Smirty8181/Tg-bidloLand/releases/latest)
+[![CI](https://github.com/Smirty8181/Tg-bidloLand/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Smirty8181/Tg-bidloLand/actions/workflows/ci.yml)
 
 Официальная экосистема Minecraft-сервера **БыдлоЛенд**: Telegram-бот, Telegram Mini App (Vue 3), FastAPI backend, PostgreSQL и Paper-плагин для интеграции с сервером.
 
@@ -67,23 +68,29 @@ Telegram-клиент **никогда** не обращается к RCON на�
 ### 1. Клонирование и зависимости
 
 ```bash
-cd "C:\Tg bidloLand"
+git clone https://github.com/Smirty8181/Tg-bidloLand.git
+cd Tg-bidloLand
 python -m venv .venv
 
 # Windows
 .venv\Scripts\activate
 
 pip install -r requirements.txt
-cd miniapp && npm install && npm run build && cd ..
+cd miniapp
+npm ci
+npm run build
+cd ..
 ```
 
 ### 2. Настройка `.env`
 
 Скопируйте `.env.example` в `.env` и заполните:
 
-```bash
-cp .env.example .env
+```powershell
+Copy-Item .env.example .env
 ```
+
+Для запуска через Docker Compose задайте в `.env` уникальный `POSTGRES_PASSWORD`. Сгенерировать URI-безопасный пароль можно командой `python -c "import secrets; print(secrets.token_hex(32))"`. Compose использует его для PostgreSQL и формирует строку `DATABASE_URL`.
 
 | Переменная | Описание |
 |------------|----------|
@@ -91,6 +98,7 @@ cp .env.example .env
 | `WEBAPP_URL` | HTTPS URL Mini App (для production) |
 | `BACKEND_URL` | URL backend (`http://127.0.0.1:8080`) |
 | `DATABASE_URL` | Строка подключения к БД |
+| `POSTGRES_PASSWORD` | Пароль PostgreSQL для Docker Compose |
 | `RCON_HOST`, `RCON_PORT`, `RCON_PASSWORD` | Доступ к RCON |
 | `PLUGIN_API_URL`, `PLUGIN_API_KEY` | HTTP API Paper-плагина |
 | `INTERNAL_API_KEY` | Ключ bot ↔ backend |
@@ -151,7 +159,7 @@ Healthcheck: `GET http://localhost:8080/api/health`
 Production (Docker):
 
 ```
-DATABASE_URL=postgresql+asyncpg://bydlo:bydlo@postgres:5432/bydloland
+DATABASE_URL=postgresql+asyncpg://bydlo:YOUR_PASSWORD@postgres:5432/bydloland
 ```
 
 Локально:
@@ -170,7 +178,7 @@ CREATE DATABASE bydloland OWNER bydlo;
 ```properties
 enable-rcon=true
 rcon.port=25575
-rcon.password=your_secure_password
+rcon.password=CHANGE_ME
 ```
 
 В `.env`:

@@ -3,7 +3,7 @@ services:
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: bydlo
-      POSTGRES_PASSWORD: bydlo
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       POSTGRES_DB: bydloland
     volumes:
       - pgdata:/var/lib/postgresql/data
@@ -19,7 +19,7 @@ services:
     build: .
     env_file: .env
     environment:
-      DATABASE_URL: postgresql+asyncpg://bydlo:bydlo@postgres:5432/bydloland
+      DATABASE_URL: postgresql+asyncpg://bydlo:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/bydloland
       BACKEND_URL: http://backend:8080
       HOST: 0.0.0.0
       PORT: 8080
@@ -38,7 +38,7 @@ services:
     build: .
     env_file: .env
     environment:
-      DATABASE_URL: postgresql+asyncpg://bydlo:bydlo@postgres:5432/bydloland
+      DATABASE_URL: postgresql+asyncpg://bydlo:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/bydloland
       BACKEND_URL: http://backend:8080
     command: ["python", "-m", "bot.main"]
     depends_on:
