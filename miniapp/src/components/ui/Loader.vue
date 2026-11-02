@@ -1,7 +1,7 @@
 <template>
   <div class="loader flex flex-col items-center justify-center gap-5 py-16">
     <div class="loader__orb" aria-hidden="true">
-      <img src="/logo.jpg" alt="" class="loader__logo" />
+      <img :src="publicAsset('logo.jpg')" alt="" class="loader__logo" />
     </div>
     <div class="loader__bars" aria-hidden="true">
       <span v-for="i in 4" :key="i" class="loader__bar" :style="{ animationDelay: `${i * 100}ms` }" />
@@ -9,6 +9,10 @@
     <p class="label-caps">Загрузка</p>
   </div>
 </template>
+
+<script setup lang="ts">
+import { publicAsset } from "../../services/publicAsset";
+</script>
 
 <style scoped>
 .loader__orb {

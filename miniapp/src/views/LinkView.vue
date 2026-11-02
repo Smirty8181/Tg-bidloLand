@@ -17,7 +17,7 @@
           </div>
           <div class="link-bridge__node">
             <div class="avatar-frame">
-              <img src="/logo.jpg" alt="" class="avatar-frame__inner h-14 w-14 object-cover" />
+              <img :src="publicAsset('logo.jpg')" alt="" class="avatar-frame__inner h-14 w-14 object-cover" />
             </div>
             <span class="text-[11px] font-bold text-muted">Telegram</span>
             <span class="max-w-[90px] truncate text-xs font-extrabold">{{ tgLabel }}</span>
@@ -131,6 +131,7 @@ import { api } from "../api/client";
 import LinkOnboarding from "../components/ui/LinkOnboarding.vue";
 import { useAppStore, clearBootstrapCache } from "../stores/app";
 import { useTelegram } from "../composables/useTelegram";
+import { publicAsset } from "../services/publicAsset";
 import { usePageRefresh } from "../composables/usePageRefresh";
 
 type LinkCheck = {

@@ -1,7 +1,7 @@
 <template>
   <header class="navbar glass-bar sticky top-0 z-30 -mx-1 mb-3 flex items-center gap-3 rounded-2xl px-3 py-2.5">
     <div class="avatar-frame navbar__logo-wrap shrink-0">
-      <img src="/logo.jpg" class="navbar__logo avatar-frame__inner" alt="" />
+      <img :src="publicAsset('logo.jpg')" class="navbar__logo avatar-frame__inner" alt="" />
     </div>
     <div class="min-w-0 flex-1">
       <p class="navbar__title">БЫДЛОЛЕНД</p>
@@ -35,6 +35,7 @@
 import { inject } from "vue";
 import BlIcon from "./BlIcon.vue";
 import { APP_REFRESH_KEY } from "../../composables/usePageRefresh";
+import { publicAsset } from "../../services/publicAsset";
 
 withDefaults(
   defineProps<{

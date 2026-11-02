@@ -11,6 +11,8 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
+import { isDemoMode } from "../../demo/mode";
+import { publicAsset } from "../../services/publicAsset";
 
 const props = withDefaults(
   defineProps<{ nickname?: string | null; uuid?: string | null; size?: "sm" | "md" | "lg" | "xl" }>(),
@@ -20,8 +22,9 @@ const props = withDefaults(
 const failed = ref(false);
 
 const src = computed(() => {
+  if (isDemoMode) return publicAsset("logo.jpg");
   if (failed.value || (!props.nickname && !props.uuid)) {
-    return "/logo.jpg";
+    return publicAsset("logo.jpg");
   }
   const id = props.uuid || props.nickname;
   const px = props.size === "xl" ? 128 : props.size === "lg" ? 96 : props.size === "sm" ? 32 : 64;

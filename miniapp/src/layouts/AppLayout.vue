@@ -1,6 +1,9 @@
 <template>
   <PullRefresh :refreshing="store.refreshing" @refresh="handleRefresh">
     <div class="app-shell mx-auto min-h-screen max-w-lg px-4 pb-[calc(88px+var(--safe-bottom))] pt-2">
+      <div v-if="isDemoMode" class="demo-banner" role="status">
+        Демо · вымышленные данные · только просмотр · действия отключены
+      </div>
       <div v-if="store.offline" class="offline-banner mb-3">
         <BlIcon name="offline" :size="14" tone="gold" />
         <span>Оффлайн — сохранённые данные{{ cacheLabel }}</span>
@@ -23,6 +26,7 @@ import PullRefresh from "../components/ui/PullRefresh.vue";
 import BlIcon from "../components/ui/BlIcon.vue";
 import { providePageRefresh } from "../composables/usePageRefresh";
 import { useAppStore } from "../stores/app";
+import { isDemoMode } from "../demo/mode";
 
 const store = useAppStore();
 const { refresh } = providePageRefresh();
@@ -39,6 +43,18 @@ async function handleRefresh() {
 </script>
 
 <style scoped>
+.demo-banner {
+  margin-bottom: 12px;
+  padding: 9px 11px;
+  border: 1px solid rgba(232, 176, 32, 0.28);
+  border-radius: 12px;
+  background: rgba(232, 176, 32, 0.08);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
 .offline-banner {
   display: flex;
   align-items: center;

@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
+  base: process.env.VITE_DEMO_MODE === "true" ? "/Tg-bidloLand/" : "/",
   plugins: [vue()],
   server: {
     port: 5173,

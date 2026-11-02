@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { api } from "../api/client";
+import { isDemoMode } from "../demo/mode";
 
 import type { ServerAlert, ServerStatus, UserProfile } from "../types";
 
@@ -54,6 +55,7 @@ function writeCache(profile: UserProfile, server: ServerStatus) {
 }
 
 export function clearBootstrapCache() {
+  if (isDemoMode) return;
   try {
     const tgId = currentTelegramId();
     if (tgId) localStorage.removeItem(`${CACHE_PREFIX}.${tgId}`);
@@ -74,7 +76,7 @@ export const useAppStore = defineStore("app", () => {
   const cacheAge = ref<number | null>(null);
 
   async function bootstrap() {
-    const cached = readCache();
+    const cached = isDemoMode ? null : readCache();
     if (cached) {
       profile.value = cached.profile;
       server.value = cached.server;
@@ -93,7 +95,7 @@ export const useAppStore = defineStore("app", () => {
       };
       profile.value = data.profile;
       server.value = data.server;
-      writeCache(data.profile, data.server);
+      if (!isDemoMode) writeCache(data.profile, data.server);
       cacheAge.value = Date.now();
       offline.value = false;
       for (const alert of data.alerts || []) {

@@ -1,6 +1,11 @@
+import { demoRequest } from "../demo/api";
+import { isDemoMode } from "../demo/mode";
+
 const initData = () => window.Telegram?.WebApp?.initData || "";
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  if (isDemoMode) return demoRequest<T>(path, init);
+
   const headers = new Headers(init.headers || {});
   headers.set("Content-Type", "application/json");
   const data = initData();

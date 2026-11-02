@@ -11,7 +11,7 @@
 
     <div v-else class="space-y-3.5 page-enter stagger">
       <section class="brand-hero">
-        <img src="/avatar-hero.jpg" alt="" class="brand-hero__bg" />
+        <img :src="publicAsset('avatar-hero.jpg')" alt="" class="brand-hero__bg" />
         <div class="brand-hero__overlay">
           <h1 class="brand-title">БЫДЛОЛЕНД</h1>
           <p class="brand-hero__tagline">Minecraft × Telegram</p>
@@ -119,6 +119,7 @@ import LinkOnboarding from "../components/ui/LinkOnboarding.vue";
 import { useAppStore, clearBootstrapCache } from "../stores/app";
 import { api } from "../api/client";
 import { usePageRefresh } from "../composables/usePageRefresh";
+import { publicAsset } from "../services/publicAsset";
 
 const store = useAppStore();
 const mapReady = ref(false);

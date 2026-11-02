@@ -1,5 +1,7 @@
+import { isDemoMode } from "../demo/mode";
+
 export function useTelegram() {
-  const webapp = window.Telegram?.WebApp;
+  const webapp = isDemoMode ? undefined : window.Telegram?.WebApp;
   const ready = () => {
     webapp?.ready();
     webapp?.expand();

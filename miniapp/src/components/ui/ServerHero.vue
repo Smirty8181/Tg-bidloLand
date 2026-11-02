@@ -12,7 +12,7 @@
           <p v-if="status.motd || status.name" class="server-hero__motd">{{ status.motd || status.name }}</p>
         </div>
         <div class="avatar-frame server-hero__logo-wrap">
-          <img src="/logo.jpg" class="avatar-frame__inner" alt="" />
+          <img :src="publicAsset('logo.jpg')" class="avatar-frame__inner" alt="" />
         </div>
       </div>
 
@@ -49,6 +49,7 @@ import BlIcon from "./BlIcon.vue";
 import { formatUptime } from "../../services/format";
 import type { ServerStatus } from "../../types";
 import { useTelegram } from "../../composables/useTelegram";
+import { publicAsset } from "../../services/publicAsset";
 
 const props = withDefaults(defineProps<{ status: ServerStatus; isAdmin?: boolean }>(), { isAdmin: false });
 const copied = ref(false);

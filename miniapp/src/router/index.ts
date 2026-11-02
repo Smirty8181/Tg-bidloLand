@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
+import { isDemoMode } from "../demo/mode";
 import HomeView from "../views/HomeView.vue";
 import PlayersView from "../views/PlayersView.vue";
 import ProfileView from "../views/ProfileView.vue";
@@ -22,7 +23,9 @@ import PlayerView from "../views/PlayerView.vue";
 import AdminPlayerDetailView from "../views/admin/AdminPlayerDetailView.vue";
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: isDemoMode
+    ? createWebHashHistory(import.meta.env.BASE_URL)
+    : createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: "/", component: HomeView },
     { path: "/server", component: PlayersView },
@@ -52,6 +55,10 @@ const router = createRouter({
   scrollBehavior() {
     return { top: 0 };
   },
+});
+
+router.beforeEach((to) => {
+  if (isDemoMode && to.path.startsWith("/admin")) return "/";
 });
 
 export default router;
